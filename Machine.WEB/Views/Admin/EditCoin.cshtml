@@ -1,0 +1,15 @@
+﻿@model Machine.WEB.Models.CoinViewModel
+
+@{
+    ViewBag.Title = "Admin: Edit Coin" + @Model.SNameCoin;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Edit @Model.SNameCoin</h1>
+@using (Html.BeginForm("EditCoin", "Admin"))
+{
+
+    @Html.EditorForModel()
+    @Html.Hidden("CoinID", Model.CoinID)
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Coin")
+}

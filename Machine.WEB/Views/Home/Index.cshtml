@@ -1,0 +1,177 @@
+﻿@model IEnumerable<Machine.WEB.Models.DrinkViewModel>
+
+@{
+    Layout = null;
+}
+
+@helper CreateList(string content)
+{
+    @Html.Raw(content);
+}
+
+@*<h2>@ViewBag.Title.</h2>*@
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    var Sum = 0;
+    function PlusOne() {
+        Sum += 1;
+        $('input[name="SumMoney"]').val(parseInt(Sum) + parseInt($('output[name="result"]').text()));
+    }
+    function PlusTwo() {
+        Sum += 2;
+        $('input[name="SumMoney"]').val(parseInt(Sum) + parseInt($('output[name="result"]').text()));
+    }
+    function PlusFive() {
+        Sum += 5;
+        $('input[name="SumMoney"]').val(parseInt(Sum) + parseInt($('output[name="result"]').text()));
+    }
+    function PlusTen() {
+        Sum += 10;
+        $('input[name="SumMoney"]').val(parseInt(Sum) + parseInt($('output[name="result"]').text()));
+    }
+    function DisableButton(Button) {
+        var btn = document.getElementById(Button).disabled = false;
+    }
+    //function RestOfMoney()
+    //{
+    //    $('input[name="SumMoney"]').val(0);
+    //}
+    $(function () {
+        $("#One").click(PlusOne);
+    });
+    $(function () {
+        $("#Two").click(PlusTwo);
+    });
+    $(function () {
+        $("#Five").click(PlusFive);
+    });
+    $(function () {
+        $("#Ten").click(PlusTen);
+    });
+    //$(function () { $("#Button1").click(RestOfMoney) });
+</script>
+
+
+<body>
+    <style type="text/css">
+        .center {
+            display: block;
+            margin: auto;
+        }
+
+        .button {
+            width: 100px;
+            height: 50px;
+            text-align: center;
+        }
+
+        .hide {
+            //visibility: hidden;
+            display: none;
+        }
+    </style>
+    @using (Html.BeginForm())
+    {
+        <table border="1">
+            <tr>
+                <td rowspan="2">
+                    <h3 valign="top">2 - выберите напиток</h3>
+
+                    <table>
+                        <tr>
+                            @{
+                                int i = 0;
+                                foreach (var p in Model)
+                                {
+                                    i++;
+                                    if ((p.Price <= ViewBag.SumMoney) & (p.BThereIsDrink))
+                                    {
+                                        <td align="center">
+                                            <button name="clickonbutton" type="submit" value="@p.Name"><img class="center" src="@Url.Action("GetImage", "Home", new {p.ProductID })" style="width: 128px; height: 96px;vertical-align: bottom">@p.Name, @p.Price руб.</button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td align="center">
+                                            <button name="clickonbutton" type="submit" value="@p.Name" disabled><img class="center" src="@Url.Action("GetImage", "Home", new {p.ProductID })" style="width: 128px; height: 96px;vertical-align: bottom">@p.Name, @p.Price руб.</button>
+                                        </td>
+                                    }
+                                    if (i % 3 == 0)
+                                    {
+                                        @CreateList("</tr> <tr>");
+                                    }
+                                }
+                            }
+                            @*<td>
+                                        <button name="clickonbutton" type="submit" value="Tea" disabled=@ViewBag.BThereisTea><img class="center" src="~/Images/tea.jpg" style="width: 128px; height: 96px;vertical-align: bottom">Чай, 40 руб.</button>
+                                    </td>
+                                    <td>
+                                        <button name="clickonbutton" type="submit" value="Water" disabled=@ViewBag.BThereisWater><img class="center" src="~/Images/water.png" style="width: 128px; height: 96px;vertical-align: bottom">Вода, 35 руб.</button>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button name="clickonbutton" type="submit" value="Air" disabled=@ViewBag.BThereisAir><img class="center" src="~/Images/air.png" style="width: 128px; height: 96px;vertical-align: bottom">Воздух, 5 руб.</button>
+
+                                    </td>
+                                    <td>
+                                        <button name="clickonbutton" type="submit" value="Beetlejuice" disabled=@ViewBag.BThereisBeetlejuice><img class="center" src="~/Images/beetlejuice.png" style="width: 128px; height: 96px;vertical-align: bottom">Beetlejuice, 25 руб.</button>
+
+                                    </td>
+                                    <td>
+                                        <button name="clickonbutton" type="submit" value="Yupi" disabled=@ViewBag.BThereisYupi><img class="center" src="~/Images/yupi.jpg" style="width: 128px; height: 96px;vertical-align: bottom">Yupi, 15 руб.</button>
+
+                                    </td>*@
+                            <td>
+                                <input class="hide" name="SumMoney" value=@ViewBag.SumMoney>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td valign="top">
+                    <h3 valign="top">1 - внесите деньги</h3>
+                    <table>
+                        <tr>
+                            @*@foreach (var p in Model)
+                                {
+                                    <td><input name="clickbuttoncoin" id=@p.SNameCoin class="button" type="submit" value="@p.SNameNumberCoin руб." disabled=@p.BDontCoin /></td>
+                                    if (p.SNameCoin == "Two")
+                                    {
+                                        @CreateList("</tr> <tr>");
+                                    }
+                                }*@
+                            <td><input name="clickbuttoncoin" id="One" class="button" type="submit" value="1 руб." disabled=@ViewBag.BDontOne /></td>
+                            <td><input name="clickbuttoncoin" id="Two" class="button" type="submit" value="2 руб." disabled=@ViewBag.BDontTwo /></td>
+                        </tr>
+                        <td><input name="clickbuttoncoin" id="Five" class="button" type="submit" value="5 руб." disabled=@ViewBag.BDontFive /></td>
+                        <td><input name="clickbuttoncoin" id="Ten" class="button" type="submit" value="10 руб." disabled=@ViewBag.BDontTen /></td>
+                        <tr></tr>
+                        <tr>
+                            <td colspan="2" align="center">Внесено: </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <p><output name="result">@ViewBag.SumMoney</output> руб.</p>
+                            </td>
+
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3 valign="top">3 - получите сдачу</h3>
+                    <input name="buttonrestofmoney" class="center button" type="submit" value="@ViewBag.RestOfMoney руб." />
+                </td>
+            </tr>
+        </table>
+    }
+</body>
+

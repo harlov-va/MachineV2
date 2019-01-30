@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Machine.WEB.Models.CoinViewModel>
+@{
+    ViewBag.Title = "Admin: All Coins";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>All Coins</h1>
+<table class="Grid">
+    <tr>
+        <th>Coin value</th>
+        <th class="NumericCol">Count</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.SNameCoin, "EditCoin", new { item.CoinID })</td>
+            <td class="NumericCol">@item.iCountCoin.ToString()</td>
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Go to the management page", "Index")</p>
+

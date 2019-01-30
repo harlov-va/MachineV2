@@ -1,0 +1,35 @@
+﻿@*@model IEnumerable<Machine.Models.Drink>*@
+@{
+    ViewBag.Title = "Administrative interface";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Administrative interface</h1>
+@*<table class="Grid">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th class="NumericCol">Price</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductID</td>
+                <td>@Html.ActionLink(item.Name, "Edit", new { item.ProductID })</td>
+                <td class="NumericCol">@item.Price.ToString("c")</td>
+                <td>
+                    @using (Html.BeginForm("Delete", "Admin", item.ProductID, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this listing?');" }))
+                    {
+                        @Html.Hidden("ProductID", item.ProductID)
+                        <input type="submit" value="Delete" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>*@
+<table class="Grid">
+    <tr>
+        <td>@Html.ActionLink("Мanagement drinks", "Drink")</td>
+        <td>@Html.ActionLink("Мanagement coins", "Coin")</td>
+    </tr>
+</table>
