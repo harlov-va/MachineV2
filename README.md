@@ -1,6 +1,6 @@
 # MachineV2
-ASP.NET MVC 5 Автомат по продаже напитков (версия 2)
+ASP.NET MVC 5 Drink Vending Machine (version 2)
 
-Замечание, которое было сделано мне: "Нету разделения на layers", поэтому реализовал это в новой версии. Попасть в админку сайта, можно, всё также, добавив в адресной строке "?id=secret". 
+The note that was made to me: "There is no separation on layers", so I implemented it in the new version. You can get to the site admin panel, all the same, by adding "?id=secret" in the address bar.
 
-Теперь Web-приложение выполнено, используя трехуровневую архитектуру (three-tier).
+The Web application is now executed using a three-tier architecture.
